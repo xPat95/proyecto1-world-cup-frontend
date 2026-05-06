@@ -233,6 +233,12 @@ textarea:focus {
   border: 1px solid rgba(180, 35, 24, 0.22);
 }
 
+.message-container.success {
+  background: #ecfdf3;
+  color: #027a48;
+  border: 1px solid rgba(2, 122, 72, 0.22);
+}
+
 .sticker-card {
   position: relative;
   min-height: 210px;

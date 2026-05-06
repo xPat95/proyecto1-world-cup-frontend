@@ -69,3 +69,16 @@ El usuario puede cambiar la cantidad de estampillas por pagina usando el selecto
 Los botones `Anterior` y `Siguiente` actualizan la pagina actual y cargan los nuevos resultados usando `fetch()`.
 
 Cuando cambia la busqueda o el filtro de estado, la pagina vuelve a `1`.
+
+## Crear estampillas
+
+El formulario de registro envia datos al backend usando `POST /stickers`.
+
+El frontend aplica validaciones basicas antes de enviar:
+
+- Numero de estampilla obligatorio.
+- Nombre del jugador obligatorio.
+- Pais o seleccion obligatorio.
+- Cantidad como numero entero mayor o igual a `0`.
+
+El backend tambien valida los datos recibidos. Cuando una estampilla se guarda correctamente, el formulario se limpia y la lista se recarga para mostrar el nuevo registro.

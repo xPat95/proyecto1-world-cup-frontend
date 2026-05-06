@@ -108,40 +108,40 @@
 
       <section class="form-panel" aria-label="Formulario de estampilla">
         <h2>Registrar estampilla</h2>
-        <form class="sticker-form" id="sticker-form">
-          <label for="sticker-number">
+        <form class="sticker-form" id="stickerForm">
+          <label for="stickerNumberInput">
             Numero de estampilla
-            <input id="sticker-number" name="sticker_number" type="text" placeholder="ARG-10">
+            <input id="stickerNumberInput" name="sticker_number" type="text" placeholder="ARG-10">
           </label>
 
-          <label for="player-name">
+          <label for="playerNameInput">
             Nombre del jugador
-            <input id="player-name" name="player_name" type="text" placeholder="Lionel Messi">
+            <input id="playerNameInput" name="player_name" type="text" placeholder="Lionel Messi">
           </label>
 
-          <label for="country">
+          <label for="countryInput">
             Pais o seleccion
-            <input id="country" name="country" type="text" placeholder="Argentina">
+            <input id="countryInput" name="country" type="text" placeholder="Argentina">
           </label>
 
-          <label for="position">
+          <label for="positionInput">
             Posicion
-            <input id="position" name="position" type="text" placeholder="Delantero">
+            <input id="positionInput" name="position" type="text" placeholder="Delantero">
           </label>
 
-          <label for="quantity">
+          <label for="quantityInput">
             Cantidad
-            <input id="quantity" name="quantity" type="number" min="0" placeholder="0">
+            <input id="quantityInput" name="quantity" type="number" min="0" placeholder="0">
           </label>
 
-          <label for="notes">
+          <label for="notesInput">
             Notas
-            <textarea id="notes" name="notes" rows="4" placeholder="Notas de intercambio o estado"></textarea>
+            <textarea id="notesInput" name="notes" rows="4" placeholder="Notas de intercambio o estado"></textarea>
           </label>
 
           <div class="form-actions">
-            <button type="submit" class="button primary-button">Guardar</button>
-            <button type="reset" class="button secondary-button">Limpiar</button>
+            <button type="submit" class="button primary-button">Guardar estampilla</button>
+            <button type="button" class="button secondary-button" id="clearFormButton">Limpiar</button>
           </div>
         </form>
       </section>

@@ -29,3 +29,28 @@ export async function getStickers(params = {}) {
 
   return response.json();
 }
+
+export async function createSticker(stickerData) {
+  const response = await fetch(`${API_URL}/stickers`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(stickerData),
+  });
+
+  if (!response.ok) {
+    let message = 'No se pudo registrar la estampilla';
+
+    try {
+      const errorData = await response.json();
+      message = errorData.error || errorData.message || message;
+    } catch (error) {
+      message = response.statusText || message;
+    }
+
+    throw new Error(message);
+  }
+
+  return response.json();
+}
