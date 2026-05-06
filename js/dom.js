@@ -42,7 +42,7 @@ export function renderStickers(stickers) {
   stickersGrid.innerHTML = '';
 
   if (!stickers.length) {
-    stickersGrid.innerHTML = '<p class="empty-message">No hay estampillas registradas todavía.</p>';
+    stickersGrid.innerHTML = '<p class="empty-message">No se encontraron estampillas con esos criterios.</p>';
     return;
   }
 

@@ -2,12 +2,15 @@ import { API_URL } from './config.js';
 
 export async function getStickers(params = {}) {
   const url = new URL(`${API_URL}/stickers`);
+  const searchParams = new URLSearchParams();
 
   Object.entries(params).forEach(([key, value]) => {
     if (value !== undefined && value !== null && value !== '') {
-      url.searchParams.append(key, value);
+      searchParams.append(key, value);
     }
   });
+
+  url.search = searchParams.toString();
 
   const response = await fetch(url);
 

@@ -42,3 +42,20 @@ Pasos de prueba:
 2. Ejecutar `schema.sql` y `seed.sql` si hace falta.
 3. Abrir el frontend con Live Server.
 4. Verificar que las estampillas aparezcan en pantalla.
+
+## Busqueda, filtros y ordenamiento
+
+El frontend envia query params al backend para buscar, filtrar y ordenar estampillas usando `fetch()`.
+
+Desde la interfaz se puede:
+
+- Buscar texto por numero, jugador, pais o posicion.
+- Filtrar por estado: todos, faltantes, conseguidas o repetidas.
+- Ordenar por numero, jugador, pais o cantidad.
+- Cambiar el orden entre ascendente y descendente.
+
+Ejemplos de uso:
+
+- Escribir `messi` en el campo de busqueda.
+- Seleccionar `Faltantes` en el filtro de estado.
+- Seleccionar `Jugador` y luego cambiar entre `Ascendente` y `Descendente`.

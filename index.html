@@ -42,14 +42,14 @@
     </section>
 
     <section class="controls-section" aria-label="Controles de busqueda y filtrado">
-      <label class="control-group" for="search-input">
+      <label class="control-group" for="searchInput">
         <span>Buscar</span>
-        <input id="search-input" type="search" placeholder="Jugador, pais o numero">
+        <input id="searchInput" type="search" placeholder="Numero, jugador, pais o posicion">
       </label>
 
-      <label class="control-group" for="status-filter">
+      <label class="control-group" for="statusFilter">
         <span>Estado</span>
-        <select id="status-filter">
+        <select id="statusFilter">
           <option value="">Todos</option>
           <option value="missing">Faltantes</option>
           <option value="owned">Conseguidas</option>
@@ -57,9 +57,10 @@
         </select>
       </label>
 
-      <label class="control-group" for="sort-field">
+      <label class="control-group" for="sortSelect">
         <span>Ordenar por</span>
-        <select id="sort-field">
+        <select id="sortSelect">
+          <option value="id">Registro</option>
           <option value="sticker_number">Numero</option>
           <option value="player_name">Jugador</option>
           <option value="country">Pais</option>
@@ -67,9 +68,9 @@
         </select>
       </label>
 
-      <label class="control-group" for="sort-order">
+      <label class="control-group" for="orderSelect">
         <span>Orden</span>
-        <select id="sort-order">
+        <select id="orderSelect">
           <option value="asc">Ascendente</option>
           <option value="desc">Descendente</option>
         </select>
