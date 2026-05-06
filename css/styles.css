@@ -313,6 +313,37 @@ textarea:focus {
   color: var(--color-text);
 }
 
+.pagination-controls {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pagination-info {
+  color: var(--color-muted);
+  font-weight: 700;
+  text-align: center;
+}
+
+.limit-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.limit-control select {
+  width: auto;
+  min-width: 78px;
+}
+
 .country-argentina {
   background: linear-gradient(135deg, #d8f1ff, #ffffff);
   border-color: #6bbfe8;
@@ -364,6 +395,12 @@ textarea:focus {
 
 .secondary-button:hover {
   background: #dce4ec;
+}
+
+.button:disabled {
+  background: #eef2f6;
+  color: #98a2b3;
+  cursor: not-allowed;
 }
 
 .app-footer {

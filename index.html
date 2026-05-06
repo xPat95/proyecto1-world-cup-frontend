@@ -89,6 +89,21 @@
         <div class="stickers-grid" id="stickersGrid">
           <p class="empty-message">Las estampillas se cargaran despues desde la API.</p>
         </div>
+
+        <div class="pagination-controls" aria-label="Paginacion de estampillas">
+          <button class="button secondary-button" id="prevPageButton" type="button">Anterior</button>
+          <span class="pagination-info" id="paginationInfo">Pagina 0 de 0 · 0 resultados</span>
+          <button class="button secondary-button" id="nextPageButton" type="button">Siguiente</button>
+          <label class="limit-control" for="limitSelect">
+            Por pagina
+            <select id="limitSelect">
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+            </select>
+          </label>
+        </div>
       </section>
 
       <section class="form-panel" aria-label="Formulario de estampilla">

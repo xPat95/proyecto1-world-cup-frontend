@@ -59,3 +59,13 @@ Ejemplos de uso:
 - Escribir `messi` en el campo de busqueda.
 - Seleccionar `Faltantes` en el filtro de estado.
 - Seleccionar `Jugador` y luego cambiar entre `Ascendente` y `Descendente`.
+
+## Paginacion
+
+El frontend envia `page` y `limit` al backend para controlar la paginacion de estampillas.
+
+El usuario puede cambiar la cantidad de estampillas por pagina usando el selector de limite.
+
+Los botones `Anterior` y `Siguiente` actualizan la pagina actual y cargan los nuevos resultados usando `fetch()`.
+
+Cuando cambia la busqueda o el filtro de estado, la pagina vuelve a `1`.

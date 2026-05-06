@@ -5,6 +5,9 @@ const ownedCount = document.getElementById('ownedCount');
 const missingCount = document.getElementById('missingCount');
 const duplicateCount = document.getElementById('duplicateCount');
 const progressPercent = document.getElementById('progressPercent');
+const prevPageButton = document.getElementById('prevPageButton');
+const nextPageButton = document.getElementById('nextPageButton');
+const paginationInfo = document.getElementById('paginationInfo');
 
 export function getStickerStatus(quantity) {
   if (quantity === 0) {
@@ -82,6 +85,24 @@ export function renderStats(stickers) {
   missingCount.textContent = missing;
   duplicateCount.textContent = duplicate;
   progressPercent.textContent = `${progress}%`;
+}
+
+export function renderPagination(pagination) {
+  const page = Number(pagination?.page) || 0;
+  const limit = Number(pagination?.limit) || 10;
+  const total = Number(pagination?.total) || 0;
+  const totalPages = Number(pagination?.totalPages) || 0;
+
+  if (total === 0) {
+    paginationInfo.textContent = 'Pagina 0 de 0 · 0 resultados';
+    prevPageButton.disabled = true;
+    nextPageButton.disabled = true;
+    return;
+  }
+
+  paginationInfo.textContent = `Pagina ${page} de ${totalPages} · ${total} resultados`;
+  prevPageButton.disabled = page <= 1;
+  nextPageButton.disabled = page >= totalPages || totalPages === 0 || limit <= 0;
 }
 
 export function showMessage(message, type = 'info') {
