@@ -1,4 +1,9 @@
-import { createSticker, getStickers } from './api.js';
+import {
+  createSticker,
+  deleteSticker,
+  getStickers,
+  updateSticker,
+} from './api.js';
 import {
   clearMessage,
   renderPagination,
@@ -14,6 +19,9 @@ const orderSelect = document.getElementById('orderSelect');
 const prevPageButton = document.getElementById('prevPageButton');
 const nextPageButton = document.getElementById('nextPageButton');
 const limitSelect = document.getElementById('limitSelect');
+const stickersGrid = document.getElementById('stickersGrid');
+const formPanel = document.getElementById('formPanel');
+const formTitle = document.getElementById('formTitle');
 const stickerForm = document.getElementById('stickerForm');
 const stickerNumberInput = document.getElementById('stickerNumberInput');
 const playerNameInput = document.getElementById('playerNameInput');
@@ -22,6 +30,7 @@ const positionInput = document.getElementById('positionInput');
 const quantityInput = document.getElementById('quantityInput');
 const notesInput = document.getElementById('notesInput');
 const clearFormButton = document.getElementById('clearFormButton');
+const submitFormButton = document.getElementById('submitFormButton');
 
 const state = {
   q: '',
@@ -39,6 +48,8 @@ let pagination = {
   total: 0,
   totalPages: 0,
 };
+let currentStickers = [];
+let editingStickerId = null;
 
 async function loadStickers() {
   try {
@@ -46,6 +57,7 @@ async function loadStickers() {
 
     const response = await getStickers(state);
     const stickers = response.data || [];
+    currentStickers = stickers;
     pagination = response.pagination || pagination;
 
     renderStickers(stickers);
@@ -61,6 +73,31 @@ async function loadStickers() {
 function clearStickerForm() {
   stickerForm.reset();
   quantityInput.value = '0';
+}
+
+function exitEditMode() {
+  editingStickerId = null;
+  formPanel.classList.remove('editing');
+  formTitle.textContent = 'Registrar estampilla';
+  submitFormButton.textContent = 'Guardar estampilla';
+  clearStickerForm();
+}
+
+function enterEditMode(sticker) {
+  editingStickerId = sticker.id;
+  formPanel.classList.add('editing');
+  formTitle.textContent = 'Editar estampilla';
+  submitFormButton.textContent = 'Actualizar estampilla';
+
+  stickerNumberInput.value = sticker.sticker_number || '';
+  playerNameInput.value = sticker.player_name || '';
+  countryInput.value = sticker.country || '';
+  positionInput.value = sticker.position || '';
+  quantityInput.value = Number(sticker.quantity) || 0;
+  notesInput.value = sticker.notes || '';
+
+  showMessage('Editando estampilla seleccionada.', 'info');
+  formPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function getStickerFormData() {
@@ -109,15 +146,75 @@ async function handleStickerFormSubmit(event) {
   }
 
   try {
+    if (editingStickerId) {
+      await updateSticker(editingStickerId, stickerData);
+      exitEditMode();
+      await loadStickers();
+      showMessage('Estampilla actualizada correctamente.', 'success');
+      return;
+    }
+
     await createSticker(stickerData);
-    showMessage('Estampilla registrada correctamente.', 'success');
     clearStickerForm();
     state.page = 1;
     await loadStickers();
     showMessage('Estampilla registrada correctamente.', 'success');
   } catch (error) {
     console.error('Error creating sticker:', error);
-    showMessage(`No se pudo registrar la estampilla. ${error.message}`, 'error');
+    const actionMessage = editingStickerId
+      ? 'No se pudo actualizar la estampilla.'
+      : 'No se pudo registrar la estampilla.';
+
+    showMessage(`${actionMessage} ${error.message}`, 'error');
+  }
+}
+
+async function handleStickerActionClick(event) {
+  const actionButton = event.target.closest('[data-action]');
+
+  if (!actionButton) {
+    return;
+  }
+
+  const id = Number(actionButton.dataset.id);
+  const action = actionButton.dataset.action;
+
+  if (!Number.isInteger(id) || id <= 0) {
+    return;
+  }
+
+  if (action === 'edit') {
+    const sticker = currentStickers.find((item) => Number(item.id) === id);
+
+    if (!sticker) {
+      showMessage('No se encontró la estampilla seleccionada.', 'error');
+      return;
+    }
+
+    enterEditMode(sticker);
+    return;
+  }
+
+  if (action === 'delete') {
+    const confirmed = window.confirm('¿Seguro que quieres eliminar esta estampilla?');
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      await deleteSticker(id);
+
+      if (editingStickerId === id) {
+        exitEditMode();
+      }
+
+      await loadStickers();
+      showMessage('Estampilla eliminada correctamente.', 'success');
+    } catch (error) {
+      console.error('Error deleting sticker:', error);
+      showMessage(`No se pudo eliminar la estampilla. ${error.message}`, 'error');
+    }
   }
 }
 
@@ -168,10 +265,12 @@ function setupEventListeners() {
     loadStickers();
   });
 
+  stickersGrid.addEventListener('click', handleStickerActionClick);
+
   stickerForm.addEventListener('submit', handleStickerFormSubmit);
 
   clearFormButton.addEventListener('click', () => {
-    clearStickerForm();
+    exitEditMode();
     clearMessage();
   });
 }

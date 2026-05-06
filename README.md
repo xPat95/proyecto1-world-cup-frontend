@@ -82,3 +82,13 @@ El frontend aplica validaciones basicas antes de enviar:
 - Cantidad como numero entero mayor o igual a `0`.
 
 El backend tambien valida los datos recibidos. Cuando una estampilla se guarda correctamente, el formulario se limpia y la lista se recarga para mostrar el nuevo registro.
+
+## Editar y eliminar estampillas
+
+Cada tarjeta de estampilla tiene acciones para editar y eliminar.
+
+Al editar, el formulario se rellena con la informacion actual de la estampilla seleccionada y cambia a modo edicion.
+
+Al eliminar, la interfaz pide confirmacion antes de borrar el registro.
+
+Estas acciones usan `PUT /stickers/:id` y `DELETE /stickers/:id` con `fetch()`.

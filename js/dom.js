@@ -66,6 +66,27 @@ export function renderStickers(stickers) {
     card.appendChild(createTextElement('p', 'sticker-position', sticker.position || 'Sin posición'));
     card.appendChild(createTextElement('p', 'sticker-quantity', `Cantidad: ${quantity}`));
 
+    const actions = document.createElement('div');
+    actions.className = 'sticker-actions';
+
+    const editButton = document.createElement('button');
+    editButton.className = 'sticker-action-button edit-action';
+    editButton.type = 'button';
+    editButton.dataset.action = 'edit';
+    editButton.dataset.id = sticker.id;
+    editButton.textContent = 'Editar';
+
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'sticker-action-button delete-action';
+    deleteButton.type = 'button';
+    deleteButton.dataset.action = 'delete';
+    deleteButton.dataset.id = sticker.id;
+    deleteButton.textContent = 'Eliminar';
+
+    actions.appendChild(editButton);
+    actions.appendChild(deleteButton);
+    card.appendChild(actions);
+
     fragment.appendChild(card);
   });
 

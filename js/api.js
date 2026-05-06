@@ -54,3 +54,49 @@ export async function createSticker(stickerData) {
 
   return response.json();
 }
+
+export async function updateSticker(id, stickerData) {
+  const response = await fetch(`${API_URL}/stickers/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(stickerData),
+  });
+
+  if (!response.ok) {
+    let message = 'No se pudo actualizar la estampilla';
+
+    try {
+      const errorData = await response.json();
+      message = errorData.error || errorData.message || message;
+    } catch (error) {
+      message = response.statusText || message;
+    }
+
+    throw new Error(message);
+  }
+
+  return response.json();
+}
+
+export async function deleteSticker(id) {
+  const response = await fetch(`${API_URL}/stickers/${id}`, {
+    method: 'DELETE',
+  });
+
+  if (!response.ok) {
+    let message = 'No se pudo eliminar la estampilla';
+
+    try {
+      const errorData = await response.json();
+      message = errorData.error || errorData.message || message;
+    } catch (error) {
+      message = response.statusText || message;
+    }
+
+    throw new Error(message);
+  }
+
+  return true;
+}
