@@ -210,6 +210,29 @@ textarea:focus {
   padding: 24px;
 }
 
+.message-container {
+  min-height: 0;
+  margin-bottom: 14px;
+}
+
+.message-container:not(:empty) {
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-weight: 700;
+}
+
+.message-container.info {
+  background: #e8f5ef;
+  color: var(--color-primary-dark);
+  border: 1px solid rgba(17, 122, 101, 0.25);
+}
+
+.message-container.error {
+  background: #fff1f0;
+  color: var(--color-danger);
+  border: 1px solid rgba(180, 35, 24, 0.22);
+}
+
 .sticker-card {
   position: relative;
   min-height: 210px;
@@ -278,9 +301,16 @@ textarea:focus {
 }
 
 .sticker-country,
-.sticker-position {
+.sticker-position,
+.sticker-quantity {
   margin: 0;
   color: var(--color-muted);
+}
+
+.sticker-quantity {
+  margin-top: auto;
+  font-weight: 800;
+  color: var(--color-text);
 }
 
 .country-argentina {

@@ -21,23 +21,23 @@
     <section class="stats-section" aria-label="Estadisticas de la coleccion">
       <article class="stat-card">
         <span class="stat-label">Total</span>
-        <strong class="stat-value">0</strong>
+        <strong class="stat-value" id="totalCount">0</strong>
       </article>
       <article class="stat-card">
         <span class="stat-label">Conseguidas</span>
-        <strong class="stat-value">0</strong>
+        <strong class="stat-value" id="ownedCount">0</strong>
       </article>
       <article class="stat-card">
         <span class="stat-label">Faltantes</span>
-        <strong class="stat-value">0</strong>
+        <strong class="stat-value" id="missingCount">0</strong>
       </article>
       <article class="stat-card">
         <span class="stat-label">Repetidas</span>
-        <strong class="stat-value">0</strong>
+        <strong class="stat-value" id="duplicateCount">0</strong>
       </article>
       <article class="stat-card progress-card">
         <span class="stat-label">Progreso</span>
-        <strong class="stat-value">0%</strong>
+        <strong class="stat-value" id="progressPercent">0%</strong>
       </article>
     </section>
 
@@ -83,7 +83,9 @@
           <span class="section-note">Vista previa</span>
         </div>
 
-        <div class="stickers-grid" id="stickers-grid">
+        <div class="message-container" id="messageContainer" aria-live="polite"></div>
+
+        <div class="stickers-grid" id="stickersGrid">
           <p class="empty-message">Las estampillas se cargaran despues desde la API.</p>
         </div>
       </section>
@@ -134,6 +136,6 @@
     <p>Proyecto 1 - Tecnologias Web: Full Stack</p>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

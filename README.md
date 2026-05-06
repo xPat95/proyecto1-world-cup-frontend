@@ -23,3 +23,22 @@ assets/logo.png
 Mas adelante este frontend consumira la API REST del backend usando `fetch()`.
 
 No se usa React, Vue, Angular, jQuery, Axios ni dependencias externas.
+
+## Consumo de API
+
+El frontend consume el backend desde:
+
+```text
+http://localhost:3000
+```
+
+Se usa `fetch()` con JavaScript vanilla. En este commit se consume `GET /stickers` para cargar y renderizar las tarjetas de estampillas.
+
+Para probar, el backend debe estar corriendo y la base de datos debe tener datos iniciales.
+
+Pasos de prueba:
+
+1. Levantar el backend.
+2. Ejecutar `schema.sql` y `seed.sql` si hace falta.
+3. Abrir el frontend con Live Server.
+4. Verificar que las estampillas aparezcan en pantalla.
