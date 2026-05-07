@@ -91,9 +91,10 @@ El formulario de registro envia datos al backend usando `POST /stickers`.
 El frontend aplica validaciones basicas antes de enviar:
 
 - Numero de estampilla obligatorio.
-- Nombre del jugador obligatorio.
 - Pais o seleccion obligatorio.
 - Cantidad como numero entero mayor o igual a `0`.
+
+El formulario ya no pide nombre de jugador. La referencia `player_name` se genera automaticamente desde el codigo de estampilla, por ejemplo `ARG01` se envia como `Estampilla ARG 01`.
 
 El backend tambien valida los datos recibidos. Cuando una estampilla se guarda correctamente, el formulario se limpia y la lista se recarga para mostrar el nuevo registro.
 
@@ -106,3 +107,7 @@ Al editar, el formulario se rellena con la informacion actual de la estampilla s
 Al eliminar, la interfaz pide confirmacion antes de borrar el registro.
 
 Estas acciones usan `PUT /stickers/:id` y `DELETE /stickers/:id` con `fetch()`.
+
+## Repositorio
+
+La interfaz incluye un enlace visible al repositorio del frontend en el footer.

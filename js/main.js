@@ -25,7 +25,6 @@ const formPanel = document.getElementById('formPanel');
 const formTitle = document.getElementById('formTitle');
 const stickerForm = document.getElementById('stickerForm');
 const stickerNumberInput = document.getElementById('stickerNumberInput');
-const playerNameInput = document.getElementById('playerNameInput');
 const countryInput = document.getElementById('countryInput');
 const positionInput = document.getElementById('positionInput');
 const quantityInput = document.getElementById('quantityInput');
@@ -106,7 +105,6 @@ function enterEditMode(sticker) {
   submitFormButton.textContent = 'Actualizar estampilla';
 
   stickerNumberInput.value = sticker.sticker_number || '';
-  playerNameInput.value = sticker.player_name || '';
   countryInput.value = sticker.country || '';
   positionInput.value = sticker.position || '';
   quantityInput.value = Number(sticker.quantity) || 0;
@@ -116,13 +114,25 @@ function enterEditMode(sticker) {
   formPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+function buildStickerReference(stickerNumber) {
+  const normalizedStickerNumber = String(stickerNumber || '').trim().toUpperCase();
+  const match = normalizedStickerNumber.match(/^([A-Z]+)(\d+)$/);
+
+  if (!match) {
+    return `Estampilla ${normalizedStickerNumber}`;
+  }
+
+  return `Estampilla ${match[1]} ${match[2]}`;
+}
+
 function getStickerFormData() {
   const quantityValue = quantityInput.value.trim();
   const quantity = quantityValue === '' ? 0 : Number(quantityValue);
+  const stickerNumber = stickerNumberInput.value.trim().toUpperCase();
 
   return {
-    sticker_number: stickerNumberInput.value.trim(),
-    player_name: playerNameInput.value.trim(),
+    sticker_number: stickerNumber,
+    player_name: buildStickerReference(stickerNumber),
     country: countryInput.value.trim(),
     position: positionInput.value.trim(),
     quantity,
@@ -133,10 +143,6 @@ function getStickerFormData() {
 function validateStickerForm(stickerData) {
   if (!stickerData.sticker_number) {
     return 'El número de estampilla es obligatorio.';
-  }
-
-  if (!stickerData.player_name) {
-    return 'El nombre del jugador es obligatorio.';
   }
 
   if (!stickerData.country) {
