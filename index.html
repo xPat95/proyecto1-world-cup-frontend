@@ -9,8 +9,10 @@
 <body>
   <header class="app-header">
     <div class="header-content">
-      <img class="app-logo" src="./assets/logo.png" alt="Logo del Mundial">
-      <div>
+      <div class="logo-ring">
+        <img class="app-logo" src="./assets/logo.png" alt="Logo del Mundial">
+      </div>
+      <div class="hero-copy">
         <h1>World Cup Sticker Tracker</h1>
         <p>Controla tus estampillas faltantes, conseguidas y repetidas.</p>
       </div>
@@ -20,34 +22,38 @@
   <main class="app-shell">
     <section class="stats-section" aria-label="Estadisticas de la coleccion">
       <article class="stat-card">
+        <span class="stat-icon">T</span>
         <span class="stat-label">Total</span>
         <strong class="stat-value" id="totalCount">0</strong>
       </article>
       <article class="stat-card">
+        <span class="stat-icon">C</span>
         <span class="stat-label">Conseguidas</span>
         <strong class="stat-value" id="ownedCount">0</strong>
       </article>
       <article class="stat-card">
+        <span class="stat-icon">F</span>
         <span class="stat-label">Faltantes</span>
         <strong class="stat-value" id="missingCount">0</strong>
       </article>
       <article class="stat-card">
+        <span class="stat-icon">R</span>
         <span class="stat-label">Repetidas</span>
         <strong class="stat-value" id="duplicateCount">0</strong>
       </article>
       <article class="stat-card progress-card">
+        <span class="stat-icon">%</span>
         <span class="stat-label">Progreso</span>
         <strong class="stat-value" id="progressPercent">0%</strong>
       </article>
     </section>
 
     <section class="controls-section" aria-label="Controles de busqueda y filtrado">
-      <label class="control-group" for="searchInput">
-        <span>Buscar</span>
+      <label class="control-group search-control" for="searchInput">
         <input id="searchInput" type="search" placeholder="Numero, jugador, pais o posicion">
       </label>
 
-      <label class="control-group" for="statusFilter">
+      <label class="control-group pill-control" for="statusFilter">
         <span>Estado</span>
         <select id="statusFilter">
           <option value="">Todos</option>
@@ -110,22 +116,22 @@
         <h2 id="formTitle">Registrar estampilla</h2>
         <form class="sticker-form" id="stickerForm">
           <label for="stickerNumberInput">
-            Numero de estampilla
-            <input id="stickerNumberInput" name="sticker_number" type="text" placeholder="ARG-10">
+            Codigo de estampilla
+            <input id="stickerNumberInput" name="sticker_number" type="text" placeholder="ARG1">
           </label>
 
           <label for="playerNameInput">
-            Nombre del jugador
+            Nombre / referencia
             <input id="playerNameInput" name="player_name" type="text" placeholder="Lionel Messi">
           </label>
 
           <label for="countryInput">
-            Pais o seleccion
-            <input id="countryInput" name="country" type="text" placeholder="Argentina">
+            Seleccion o categoria
+            <input id="countryInput" name="country" type="text" placeholder="ARG">
           </label>
 
           <label for="positionInput">
-            Posicion
+            Posicion / tipo
             <input id="positionInput" name="position" type="text" placeholder="Delantero">
           </label>
 

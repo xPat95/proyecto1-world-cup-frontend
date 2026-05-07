@@ -8,6 +8,8 @@ Este repositorio contiene el frontend del proyecto, construido con HTML, CSS y J
 
 El frontend ya consume la API del backend con `fetch()`, renderiza tarjetas de estampillas y permite buscar, filtrar, ordenar, paginar, crear, editar y eliminar registros.
 
+El diseño visual fue actualizado para priorizar codigos de estampilla, con cromos por seleccion, estados visuales para faltantes, conseguidas y repetidas, y colores inspirados en las selecciones del Mundial.
+
 ## Logo
 
 El logo del proyecto debe colocarse en:
