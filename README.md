@@ -6,9 +6,7 @@ Este repositorio contiene el frontend del proyecto, construido con HTML, CSS y J
 
 ## Estado actual
 
-Este commit agrega la estructura visual base de la aplicacion: header, estadisticas, controles, contenedor de estampillas y formulario.
-
-Todavia no hay consumo del backend con `fetch()`, render dinamico ni logica de CRUD en el frontend.
+El frontend ya consume la API del backend con `fetch()`, renderiza tarjetas de estampillas y permite buscar, filtrar, ordenar, paginar, crear, editar y eliminar registros.
 
 ## Logo
 
@@ -20,9 +18,11 @@ assets/logo.png
 
 ## Proximos pasos
 
-Mas adelante este frontend consumira la API REST del backend usando `fetch()`.
-
 No se usa React, Vue, Angular, jQuery, Axios ni dependencias externas.
+
+## Ejecucion local
+
+Puedes abrir `index.html` directamente en el navegador o usar Live Server en VS Code.
 
 ## Consumo de API
 
@@ -32,7 +32,7 @@ El frontend consume el backend desde:
 http://localhost:3000
 ```
 
-Se usa `fetch()` con JavaScript vanilla. En este commit se consume `GET /stickers` para cargar y renderizar las tarjetas de estampillas.
+Se usa `fetch()` con JavaScript vanilla para cargar, crear, editar y eliminar estampillas.
 
 Para probar, el backend debe estar corriendo y la base de datos debe tener datos iniciales.
 

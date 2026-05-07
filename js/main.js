@@ -60,6 +60,12 @@ async function loadStickers() {
     currentStickers = stickers;
     pagination = response.pagination || pagination;
 
+    if (pagination.total > 0 && state.page > pagination.totalPages) {
+      state.page = pagination.totalPages;
+      await loadStickers();
+      return;
+    }
+
     renderStickers(stickers);
     renderStats(stickers);
     renderPagination(pagination);
