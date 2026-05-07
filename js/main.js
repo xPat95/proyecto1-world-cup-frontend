@@ -1,5 +1,6 @@
 import {
   createSticker,
+  getStickerStats,
   deleteSticker,
   getStickers,
   updateSticker,
@@ -67,8 +68,17 @@ async function loadStickers() {
     }
 
     renderStickers(stickers);
-    renderStats(stickers);
     renderPagination(pagination);
+
+    try {
+      const statsResponse = await getStickerStats();
+      renderStats(statsResponse.data);
+    } catch (statsError) {
+      console.error('Error loading sticker stats:', statsError);
+      showMessage('Las estampillas se cargaron, pero no se pudieron actualizar las estadisticas globales.', 'error');
+      return;
+    }
+
     clearMessage();
   } catch (error) {
     console.error('Error loading stickers:', error);

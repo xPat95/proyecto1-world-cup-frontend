@@ -266,19 +266,12 @@ export function renderStickers(stickers) {
   stickersGrid.appendChild(fragment);
 }
 
-export function renderStats(stickers) {
-  const total = stickers.length;
-  const owned = stickers.filter((sticker) => Number(sticker.quantity) === 1).length;
-  const missing = stickers.filter((sticker) => Number(sticker.quantity) === 0).length;
-  const duplicate = stickers.filter((sticker) => Number(sticker.quantity) > 1).length;
-  const collected = stickers.filter((sticker) => Number(sticker.quantity) >= 1).length;
-  const progress = total > 0 ? Math.round((collected / total) * 100) : 0;
-
-  totalCount.textContent = total;
-  ownedCount.textContent = owned;
-  missingCount.textContent = missing;
-  duplicateCount.textContent = duplicate;
-  progressPercent.textContent = `${progress}%`;
+export function renderStats(stats = {}) {
+  totalCount.textContent = Number(stats.total) || 0;
+  ownedCount.textContent = Number(stats.owned) || 0;
+  missingCount.textContent = Number(stats.missing) || 0;
+  duplicateCount.textContent = Number(stats.duplicate) || 0;
+  progressPercent.textContent = `${Number(stats.progress) || 0}%`;
 }
 
 export function renderPagination(pagination) {

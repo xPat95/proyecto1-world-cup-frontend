@@ -30,6 +30,25 @@ export async function getStickers(params = {}) {
   return response.json();
 }
 
+export async function getStickerStats() {
+  const response = await fetch(`${API_URL}/stickers/stats`);
+
+  if (!response.ok) {
+    let message = 'No se pudieron cargar las estadisticas';
+
+    try {
+      const errorData = await response.json();
+      message = errorData.error || errorData.message || message;
+    } catch (error) {
+      message = response.statusText || message;
+    }
+
+    throw new Error(message);
+  }
+
+  return response.json();
+}
+
 export async function createSticker(stickerData) {
   const response = await fetch(`${API_URL}/stickers`, {
     method: 'POST',

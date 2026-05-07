@@ -72,6 +72,18 @@ Los botones `Anterior` y `Siguiente` actualizan la pagina actual y cargan los nu
 
 Cuando cambia la busqueda o el filtro de estado, la pagina vuelve a `1`.
 
+## Estadisticas globales
+
+Las tarjetas superiores muestran estadisticas globales del album completo usando `GET /stickers/stats`.
+
+La paginacion, busqueda y filtros solo afectan las tarjetas visibles en el grid.
+
+Las repetidas tambien cuentan como conseguidas:
+
+- Conseguidas: `quantity >= 1`
+- Faltantes: `quantity = 0`
+- Repetidas: `quantity > 1`
+
 ## Crear estampillas
 
 El formulario de registro envia datos al backend usando `POST /stickers`.
