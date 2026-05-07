@@ -56,6 +56,8 @@ Desde la interfaz se puede:
 - Ordenar por numero, referencia, pais o cantidad.
 - Cambiar el orden entre ascendente y descendente.
 
+El filtro `Conseguidas` envia `status=owned` al backend e incluye estampillas con `quantity >= 1`, por lo que tambien muestra las repetidas.
+
 Ejemplos de uso:
 
 - Escribir `messi` en el campo de busqueda.
