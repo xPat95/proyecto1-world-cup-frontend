@@ -51,16 +51,16 @@ El frontend envia query params al backend para buscar, filtrar y ordenar estampi
 
 Desde la interfaz se puede:
 
-- Buscar texto por numero, jugador, pais o posicion.
+- Buscar texto por numero, referencia, pais o tipo.
 - Filtrar por estado: todos, faltantes, conseguidas o repetidas.
-- Ordenar por numero, jugador, pais o cantidad.
+- Ordenar por numero, referencia, pais o cantidad.
 - Cambiar el orden entre ascendente y descendente.
 
 Ejemplos de uso:
 
 - Escribir `messi` en el campo de busqueda.
 - Seleccionar `Faltantes` en el filtro de estado.
-- Seleccionar `Jugador` y luego cambiar entre `Ascendente` y `Descendente`.
+- Seleccionar `Referencia` y luego cambiar entre `Ascendente` y `Descendente`.
 
 ## Paginacion
 
@@ -91,10 +91,11 @@ El formulario de registro envia datos al backend usando `POST /stickers`.
 El frontend aplica validaciones basicas antes de enviar:
 
 - Numero de estampilla obligatorio.
+- Nombre o referencia obligatorio.
 - Pais o seleccion obligatorio.
 - Cantidad como numero entero mayor o igual a `0`.
 
-El formulario ya no pide nombre de jugador. La referencia `player_name` se genera automaticamente desde el codigo de estampilla, por ejemplo `ARG01` se envia como `Estampilla ARG 01`.
+El campo `Nombre / referencia` se mantiene para describir la estampilla sin enfocarse en jugadores reales. Por ejemplo, puede usarse `Estampilla FWC 02`, `Estampilla ARG 01` o una descripcion breve del cromo.
 
 El backend tambien valida los datos recibidos. Cuando una estampilla se guarda correctamente, el formulario se limpia y la lista se recarga para mostrar el nuevo registro.
 

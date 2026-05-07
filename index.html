@@ -50,7 +50,7 @@
 
     <section class="controls-section" aria-label="Controles de busqueda y filtrado">
       <label class="control-group search-control" for="searchInput">
-        <input id="searchInput" type="search" placeholder="Numero, jugador, pais o posicion">
+        <input id="searchInput" type="search" placeholder="Numero, referencia, pais o tipo">
       </label>
 
       <label class="control-group pill-control" for="statusFilter">
@@ -68,7 +68,7 @@
         <select id="sortSelect">
           <option value="id">Registro</option>
           <option value="sticker_number">Numero</option>
-          <option value="player_name">Jugador</option>
+          <option value="player_name">Referencia</option>
           <option value="country">Pais</option>
           <option value="quantity">Cantidad</option>
         </select>
@@ -120,14 +120,19 @@
             <input id="stickerNumberInput" name="sticker_number" type="text" placeholder="ARG1">
           </label>
 
+          <label for="playerNameInput">
+            Nombre / referencia
+            <input id="playerNameInput" name="player_name" type="text" placeholder="Estampilla FWC 02">
+          </label>
+
           <label for="countryInput">
             Seleccion o categoria
             <input id="countryInput" name="country" type="text" placeholder="ARG">
           </label>
 
           <label for="positionInput">
-            Posicion / tipo
-            <input id="positionInput" name="position" type="text" placeholder="Delantero">
+            Tipo
+            <input id="positionInput" name="position" type="text" placeholder="Seleccion">
           </label>
 
           <label for="quantityInput">
