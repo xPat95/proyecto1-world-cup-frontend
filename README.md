@@ -1,116 +1,189 @@
 # World Cup Sticker Tracker - Frontend
 
-Interfaz web para el tracker de estampillas del Mundial.
+## Descripcion
 
-Este repositorio contiene el frontend del proyecto, construido con HTML, CSS y JavaScript vanilla.
+Este repositorio contiene la interfaz web de **World Cup Sticker Tracker**, una aplicacion full stack para llevar control de estampillas del Mundial usando codigos de album.
 
-## Estado actual
+El frontend consume una API REST usando `fetch()` y permite administrar la coleccion desde una interfaz visual: cargar estampillas, buscar, filtrar, ordenar, paginar, crear, editar y eliminar registros.
 
-El frontend ya consume la API del backend con `fetch()`, renderiza tarjetas de estampillas y permite buscar, filtrar, ordenar, paginar, crear, editar y eliminar registros.
+La app no usa imagenes reales de jugadores ni de estampillas. Cada estampa se representa como un cromo visual con codigo, seleccion o categoria, cantidad y estado.
 
-El diseño visual fue actualizado para priorizar codigos de estampilla, con cromos por seleccion, estados visuales para faltantes, conseguidas y repetidas, y colores inspirados en las selecciones del Mundial.
+## Repositorios relacionados
 
-## Logo
+- Backend: https://github.com/xPat95/proyecto1-world-cup-backend.git
 
-El logo del proyecto debe colocarse en:
+## Links del proyecto
 
-```text
-assets/logo.png
+- Frontend desplegado: [Pendiente de agregar despues del despliegue]
+- Backend desplegado: [Pendiente de agregar despues del despliegue]
+- Swagger UI del backend: [Pendiente de agregar despues del despliegue]
+
+## Tecnologias usadas
+
+- HTML
+- CSS
+- JavaScript vanilla
+- fetch()
+- Live Server para desarrollo local
+
+Este frontend:
+
+- No usa React.
+- No usa Vue.
+- No usa Angular.
+- No usa jQuery.
+- No usa Axios.
+- No usa dependencias externas.
+
+## Funcionalidades principales
+
+- Visualizacion de estampillas tipo cromo.
+- Colores por seleccion o categoria.
+- Estados visuales:
+  - Faltante.
+  - Conseguida.
+  - Repetida.
+- Busqueda.
+- Filtros.
+- Ordenamiento.
+- Paginacion.
+- Estadisticas globales del album.
+- Crear estampilla.
+- Editar estampilla.
+- Eliminar estampilla.
+- Enlace al repositorio desde la interfaz.
+
+## Logica de estados
+
+El estado se calcula a partir de `quantity`:
+
+- `quantity = 0` -> Faltante
+- `quantity = 1` -> Conseguida
+- `quantity > 1` -> Repetida
+
+Una estampilla repetida tambien cuenta como conseguida.
+
+Para estadisticas:
+
+- Faltantes = `quantity = 0`
+- Conseguidas = `quantity >= 1`
+- Repetidas = `quantity > 1`
+- Progreso = `conseguidas / total * 100`
+
+## Estadisticas globales
+
+Las cards superiores muestran estadisticas del album completo, no solo de la pagina visible ni de los filtros actuales.
+
+Las estadisticas se obtienen desde el backend usando:
+
+```http
+GET /stickers/stats
 ```
 
-## Proximos pasos
+Significado:
 
-No se usa React, Vue, Angular, jQuery, Axios ni dependencias externas.
+- Total = total de estampillas en la base de datos.
+- Conseguidas = estampillas con `quantity >= 1`.
+- Faltantes = estampillas con `quantity = 0`.
+- Repetidas = estampillas con `quantity > 1`.
+- Progreso = conseguidas / total.
 
-## Ejecucion local
+## Logica visual de cromos
 
-Puedes abrir `index.html` directamente en el navegador o usar Live Server en VS Code.
+Cada tarjeta prioriza el codigo de la estampilla como elemento principal.
 
-## Consumo de API
+Ejemplos de codigos:
 
-El frontend consume el backend desde:
+- `FWC00`
+- `FWC19`
+- `MEX17`
+- `ARG03`
+- `BRA20`
+
+Reglas visuales:
+
+- `FWC` usa color dorado.
+- Cada seleccion tiene colores propios.
+- Las faltantes se muestran en gris.
+- Las repetidas usan acento dorado.
+- El codigo de estampa es el elemento principal de la card.
+
+## Configuracion de API
+
+La URL base del backend esta configurada en:
+
+```text
+js/config.js
+```
+
+En desarrollo local debe apuntar a:
 
 ```text
 http://localhost:3000
 ```
 
-Se usa `fetch()` con JavaScript vanilla para cargar, crear, editar y eliminar estampillas.
+Despues del deploy se debe cambiar por la URL publica del backend.
 
-Para probar, el backend debe estar corriendo y la base de datos debe tener datos iniciales.
+## Como correr localmente
 
-Pasos de prueba:
+Primero se debe levantar el backend y tener PostgreSQL con el schema y seed cargados.
 
-1. Levantar el backend.
-2. Ejecutar `schema.sql` y `seed.sql` si hace falta.
-3. Abrir el frontend con Live Server.
-4. Verificar que las estampillas aparezcan en pantalla.
+Para el frontend, se recomienda usar VS Code con Live Server porque el proyecto usa modulos JavaScript y llamadas `fetch()`.
 
-## Busqueda, filtros y ordenamiento
+Pasos:
 
-El frontend envia query params al backend para buscar, filtrar y ordenar estampillas usando `fetch()`.
+1. Abrir el repositorio frontend en VS Code.
+2. Abrir `index.html`.
+3. Click derecho -> `Open with Live Server`.
+4. Abrir la URL local indicada por Live Server.
 
-Desde la interfaz se puede:
+No se recomienda abrir `index.html` directamente desde el sistema de archivos, porque puede causar problemas con modulos JavaScript o llamadas a la API.
 
-- Buscar texto por numero, referencia, pais o tipo.
-- Filtrar por estado: todos, faltantes, conseguidas o repetidas.
-- Ordenar por numero, referencia, pais o cantidad.
-- Cambiar el orden entre ascendente y descendente.
+## Como probar
 
-El filtro `Conseguidas` envia `status=owned` al backend e incluye estampillas con `quantity >= 1`, por lo que tambien muestra las repetidas.
+Con el backend corriendo, probar en la interfaz:
 
-Ejemplos de uso:
+- Verificar que carguen las estampillas.
+- Buscar `FWC`.
+- Buscar `MEX`.
+- Filtrar por faltantes.
+- Filtrar por conseguidas.
+- Filtrar por repetidas.
+- Cambiar la paginacion.
+- Crear una estampilla.
+- Editar una estampilla.
+- Eliminar una estampilla.
+- Verificar que las estadisticas globales no cambien al cambiar de pagina o aplicar filtros.
 
-- Escribir `messi` en el campo de busqueda.
-- Seleccionar `Faltantes` en el filtro de estado.
-- Seleccionar `Referencia` y luego cambiar entre `Ascendente` y `Descendente`.
+## Estructura del proyecto
 
-## Paginacion
+```text
+index.html
+css/
+  styles.css
+js/
+  config.js
+  api.js
+  dom.js
+  main.js
+assets/
+```
 
-El frontend envia `page` y `limit` al backend para controlar la paginacion de estampillas.
+## Screenshots
 
-El usuario puede cambiar la cantidad de estampillas por pagina usando el selector de limite.
+Pendiente de agregar capturas despues de probar la app.
 
-Los botones `Anterior` y `Siguiente` actualizan la pagina actual y cargan los nuevos resultados usando `fetch()`.
+Capturas sugeridas:
 
-Cuando cambia la busqueda o el filtro de estado, la pagina vuelve a `1`.
+- Vista principal.
+- Filtro funcionando.
+- Formulario de registro.
+- Tarjetas tipo cromo.
 
-## Estadisticas globales
+## Notas de entrega
 
-Las tarjetas superiores muestran estadisticas globales del album completo usando `GET /stickers/stats`.
+El frontend se entregara publicado en linea y consumira el backend desplegado.
 
-La paginacion, busqueda y filtros solo afectan las tarjetas visibles en el grid.
+El backend tambien estara publicado en linea y contara con Swagger UI.
 
-Las repetidas tambien cuentan como conseguidas:
-
-- Conseguidas: `quantity >= 1`
-- Faltantes: `quantity = 0`
-- Repetidas: `quantity > 1`
-
-## Crear estampillas
-
-El formulario de registro envia datos al backend usando `POST /stickers`.
-
-El frontend aplica validaciones basicas antes de enviar:
-
-- Numero de estampilla obligatorio.
-- Nombre o referencia obligatorio.
-- Pais o seleccion obligatorio.
-- Cantidad como numero entero mayor o igual a `0`.
-
-El campo `Nombre / referencia` se mantiene para describir la estampilla sin enfocarse en jugadores reales. Por ejemplo, puede usarse `Estampilla FWC 02`, `Estampilla ARG 01` o una descripcion breve del cromo.
-
-El backend tambien valida los datos recibidos. Cuando una estampilla se guarda correctamente, el formulario se limpia y la lista se recarga para mostrar el nuevo registro.
-
-## Editar y eliminar estampillas
-
-Cada tarjeta de estampilla tiene acciones para editar y eliminar.
-
-Al editar, el formulario se rellena con la informacion actual de la estampilla seleccionada y cambia a modo edicion.
-
-Al eliminar, la interfaz pide confirmacion antes de borrar el registro.
-
-Estas acciones usan `PUT /stickers/:id` y `DELETE /stickers/:id` con `fetch()`.
-
-## Repositorio
-
-La interfaz incluye un enlace visible al repositorio del frontend en el footer.
+Despues del deploy se reemplazaran los placeholders de links por las URLs reales del frontend, backend y Swagger UI.
