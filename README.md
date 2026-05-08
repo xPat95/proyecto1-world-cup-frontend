@@ -14,9 +14,9 @@ La app no usa imagenes reales de jugadores ni de estampillas. Cada estampa se re
 
 ## Links del proyecto
 
-- Frontend desplegado: [Pendiente de agregar despues del despliegue]
-- Backend desplegado: [Pendiente de agregar despues del despliegue]
-- Swagger UI del backend: [Pendiente de agregar despues del despliegue]
+- Frontend desplegado: https://xpat95.github.io/proyecto1-world-cup-frontend/
+- Backend desplegado: https://proyecto1-world-cup-backend.onrender.com
+- Swagger UI del backend: https://proyecto1-world-cup-backend.onrender.com/docs
 
 ## Tecnologias usadas
 
@@ -116,13 +116,19 @@ La URL base del backend esta configurada en:
 js/config.js
 ```
 
-En desarrollo local debe apuntar a:
+La version publicada del frontend consume la API publicada del backend:
+
+```text
+https://proyecto1-world-cup-backend.onrender.com
+```
+
+Para desarrollo local, la URL puede apuntar a:
 
 ```text
 http://localhost:3000
 ```
 
-Despues del deploy se debe cambiar por la URL publica del backend.
+Si se cambia entre entorno local y publicado, se debe actualizar `API_URL` en `js/config.js`.
 
 ## Como correr localmente
 
@@ -141,7 +147,13 @@ No se recomienda abrir `index.html` directamente desde el sistema de archivos, p
 
 ## Como probar
 
-Con el backend corriendo, probar en la interfaz:
+En la version publicada:
+
+```text
+https://xpat95.github.io/proyecto1-world-cup-frontend/
+```
+
+Con el backend disponible, probar en la interfaz:
 
 - Verificar que carguen las estampillas.
 - Buscar `FWC`.
@@ -182,8 +194,22 @@ Capturas sugeridas:
 
 ## Notas de entrega
 
-El frontend se entregara publicado en linea y consumira el backend desplegado.
+El frontend esta publicado en linea y consume el backend desplegado en Render.
 
-El backend tambien estara publicado en linea y contara con Swagger UI.
+Frontend publicado:
 
-Despues del deploy se reemplazaran los placeholders de links por las URLs reales del frontend, backend y Swagger UI.
+```text
+https://xpat95.github.io/proyecto1-world-cup-frontend/
+```
+
+Backend publicado:
+
+```text
+https://proyecto1-world-cup-backend.onrender.com
+```
+
+Swagger UI del backend:
+
+```text
+https://proyecto1-world-cup-backend.onrender.com/docs
+```
