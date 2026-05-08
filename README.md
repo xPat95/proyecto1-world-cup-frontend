@@ -1,29 +1,39 @@
 # World Cup Sticker Tracker - Frontend
 
-## Descripcion
+## Descripción
 
-Este repositorio contiene la interfaz web de **World Cup Sticker Tracker**, una aplicacion full stack para llevar control de estampillas del Mundial usando codigos de album.
+Este repositorio contiene la interfaz web de **World Cup Sticker Tracker**, una aplicación full stack para llevar control de estampillas del Mundial usando códigos de álbum.
 
-El frontend consume una API REST usando `fetch()` y permite administrar la coleccion desde una interfaz visual: cargar estampillas, buscar, filtrar, ordenar, paginar, crear, editar y eliminar registros.
+El frontend consume una API REST usando `fetch()` y permite administrar la colección desde una interfaz visual. Desde el cliente se pueden cargar estampillas, buscar, filtrar, ordenar, paginar, crear, editar y eliminar registros.
 
-La app no usa imagenes reales de jugadores ni de estampillas. Cada estampa se representa como un cromo visual con codigo, seleccion o categoria, cantidad y estado.
+La app no usa imágenes reales de jugadores ni de estampillas. Cada estampa se representa como un cromo visual con código, selección o categoría, cantidad y estado.
 
-## Repositorios relacionados
+El cliente no accede directamente a la base de datos. Toda la información se obtiene desde el backend mediante peticiones HTTP.
 
-- Backend: https://github.com/xPat95/proyecto1-world-cup-backend.git
+---
 
 ## Links del proyecto
 
-- Frontend desplegado: https://xpat95.github.io/proyecto1-world-cup-frontend/
-- Backend desplegado: https://proyecto1-world-cup-backend.onrender.com
-- Swagger UI del backend: https://proyecto1-world-cup-backend.onrender.com/docs
+- **Frontend desplegado:**  
+  https://xpat95.github.io/proyecto1-world-cup-frontend/
 
-## Tecnologias usadas
+- **Backend desplegado:**  
+  https://proyecto1-world-cup-backend.onrender.com
+
+- **Swagger UI del backend:**  
+  https://proyecto1-world-cup-backend.onrender.com/docs
+
+- **Repositorio backend:**  
+  https://github.com/xPat95/proyecto1-world-cup-backend.git
+
+---
+
+## Tecnologías usadas
 
 - HTML
 - CSS
 - JavaScript vanilla
-- fetch()
+- `fetch()`
 - Live Server para desarrollo local
 
 Este frontend:
@@ -35,46 +45,76 @@ Este frontend:
 - No usa Axios.
 - No usa dependencias externas.
 
+---
+
 ## Funcionalidades principales
 
-- Visualizacion de estampillas tipo cromo.
-- Colores por seleccion o categoria.
+- Visualización de estampillas tipo cromo.
+- Colores por selección o categoría.
 - Estados visuales:
   - Faltante.
   - Conseguida.
   - Repetida.
-- Busqueda.
-- Filtros.
+- Búsqueda por texto.
+- Filtros por estado.
 - Ordenamiento.
-- Paginacion.
-- Estadisticas globales del album.
+- Paginación.
+- Estadísticas globales del álbum.
 - Crear estampilla.
 - Editar estampilla.
 - Eliminar estampilla.
 - Enlace al repositorio desde la interfaz.
 
-## Logica de estados
+---
+
+## Cumplimiento de requisitos
+
+| Requisito | Estado |
+|---|---|
+| Cliente separado del backend | Cumplido |
+| Frontend con HTML, CSS y JavaScript vanilla | Cumplido |
+| Sin frameworks ni librerías externas | Cumplido |
+| Consumo de API con `fetch()` | Cumplido |
+| Cliente no accede directamente a la base de datos | Cumplido |
+| Permite ver estampillas | Cumplido |
+| Permite crear estampillas | Cumplido |
+| Permite editar estampillas | Cumplido |
+| Permite eliminar estampillas | Cumplido |
+| Búsqueda | Cumplido |
+| Filtros | Cumplido |
+| Ordenamiento | Cumplido |
+| Paginación | Cumplido |
+| Estadísticas globales | Cumplido |
+| Dos repositorios separados | Cumplido |
+| README con link al backend | Cumplido |
+| Proyecto publicado en internet | Cumplido |
+
+---
+
+## Lógica de estados
 
 El estado se calcula a partir de `quantity`:
 
-- `quantity = 0` -> Faltante
-- `quantity = 1` -> Conseguida
-- `quantity > 1` -> Repetida
+- `quantity = 0` → Faltante
+- `quantity = 1` → Conseguida
+- `quantity > 1` → Repetida
 
-Una estampilla repetida tambien cuenta como conseguida.
+Una estampilla repetida también cuenta como conseguida.
 
-Para estadisticas:
+Para estadísticas:
 
 - Faltantes = `quantity = 0`
 - Conseguidas = `quantity >= 1`
 - Repetidas = `quantity > 1`
 - Progreso = `conseguidas / total * 100`
 
-## Estadisticas globales
+---
 
-Las cards superiores muestran estadisticas del album completo, no solo de la pagina visible ni de los filtros actuales.
+## Estadísticas globales
 
-Las estadisticas se obtienen desde el backend usando:
+Las cards superiores muestran estadísticas del álbum completo, no solo de la página visible ni de los filtros actuales.
+
+Las estadísticas se obtienen desde el backend usando:
 
 ```http
 GET /stickers/stats
@@ -88,11 +128,13 @@ Significado:
 - Repetidas = estampillas con `quantity > 1`.
 - Progreso = conseguidas / total.
 
-## Logica visual de cromos
+---
 
-Cada tarjeta prioriza el codigo de la estampilla como elemento principal.
+## Lógica visual de cromos
 
-Ejemplos de codigos:
+Cada tarjeta prioriza el código de la estampilla como elemento principal.
+
+Ejemplos de códigos:
 
 - `FWC00`
 - `FWC19`
@@ -103,20 +145,23 @@ Ejemplos de codigos:
 Reglas visuales:
 
 - `FWC` usa color dorado.
-- Cada seleccion tiene colores propios.
+- Cada selección tiene colores propios.
 - Las faltantes se muestran en gris.
+- Las conseguidas usan los colores de la selección o categoría.
 - Las repetidas usan acento dorado.
-- El codigo de estampa es el elemento principal de la card.
+- El código de estampa es el elemento principal de la card.
 
-## Configuracion de API
+---
 
-La URL base del backend esta configurada en:
+## Configuración de API
+
+La URL base del backend está configurada en:
 
 ```text
 js/config.js
 ```
 
-La version publicada del frontend consume la API publicada del backend:
+La versión publicada del frontend consume la API publicada del backend:
 
 ```text
 https://proyecto1-world-cup-backend.onrender.com
@@ -130,24 +175,28 @@ http://localhost:3000
 
 Si se cambia entre entorno local y publicado, se debe actualizar `API_URL` en `js/config.js`.
 
-## Como correr localmente
+---
+
+## Cómo correr localmente
 
 Primero se debe levantar el backend y tener PostgreSQL con el schema y seed cargados.
 
-Para el frontend, se recomienda usar VS Code con Live Server porque el proyecto usa modulos JavaScript y llamadas `fetch()`.
+Para el frontend, se recomienda usar VS Code con Live Server porque el proyecto usa módulos JavaScript y llamadas `fetch()`.
 
 Pasos:
 
 1. Abrir el repositorio frontend en VS Code.
 2. Abrir `index.html`.
-3. Click derecho -> `Open with Live Server`.
+3. Click derecho → `Open with Live Server`.
 4. Abrir la URL local indicada por Live Server.
 
-No se recomienda abrir `index.html` directamente desde el sistema de archivos, porque puede causar problemas con modulos JavaScript o llamadas a la API.
+No se recomienda abrir `index.html` directamente desde el sistema de archivos, porque puede causar problemas con módulos JavaScript o llamadas a la API.
 
-## Como probar
+---
 
-En la version publicada:
+## Cómo probar
+
+En la versión publicada:
 
 ```text
 https://xpat95.github.io/proyecto1-world-cup-frontend/
@@ -161,11 +210,35 @@ Con el backend disponible, probar en la interfaz:
 - Filtrar por faltantes.
 - Filtrar por conseguidas.
 - Filtrar por repetidas.
-- Cambiar la paginacion.
+- Cambiar la paginación.
 - Crear una estampilla.
 - Editar una estampilla.
 - Eliminar una estampilla.
-- Verificar que las estadisticas globales no cambien al cambiar de pagina o aplicar filtros.
+- Verificar que las estadísticas globales no cambien al cambiar de página o aplicar filtros.
+
+---
+
+## Relación con el backend
+
+Este frontend consume una API REST publicada en Render:
+
+```text
+https://proyecto1-world-cup-backend.onrender.com
+```
+
+La documentación interactiva del backend está disponible en:
+
+```text
+https://proyecto1-world-cup-backend.onrender.com/docs
+```
+
+Repositorio del backend:
+
+```text
+https://github.com/xPat95/proyecto1-world-cup-backend.git
+```
+
+---
 
 ## Estructura del proyecto
 
@@ -179,11 +252,17 @@ js/
   dom.js
   main.js
 assets/
+  logo.png
+  github.png
+screenshots/
+README.md
 ```
+
+---
 
 ## Screenshots
 
-Pendiente de agregar capturas despues de probar la app.
+Pendiente de agregar capturas después de probar la app.
 
 Capturas sugeridas:
 
@@ -192,9 +271,11 @@ Capturas sugeridas:
 - Formulario de registro.
 - Tarjetas tipo cromo.
 
+---
+
 ## Notas de entrega
 
-El frontend esta publicado en linea y consume el backend desplegado en Render.
+El frontend está publicado en línea y consume el backend desplegado en Render.
 
 Frontend publicado:
 
@@ -212,4 +293,10 @@ Swagger UI del backend:
 
 ```text
 https://proyecto1-world-cup-backend.onrender.com/docs
+```
+
+Repositorio backend:
+
+```text
+https://github.com/xPat95/proyecto1-world-cup-backend.git
 ```
